@@ -7,6 +7,9 @@
   --right-bg-color: rgba(43, 43, 43, 0.8);
   --left-btn-hover-color: rgba(87, 84, 236, 1);
   --right-btn-hover-color: rgba(28, 122, 28, 1);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
 }
 
 * {
@@ -149,4 +152,43 @@ h1 {
   height: 100%;
   /* set background to color variable */
   background-color: var(--right-bg-color);
+}
+
+/* split right and split left including ::before*/
+.split.right, .split.left, .split.right::before, .split.left::before {
+    /* add transition to all transitionable properties, with speed value of --speed */
+    transition: all var(--speed) ease-in-out;
+}
+
+/* when hover-left is active, style left */
+.hover-left .left {
+    width: var(--hover-width);
+}
+
+/* when hover-left is active, style right */
+.hover-left .right {
+    width: var(--other-width);
+}
+
+/* when hover-right is active, style right */
+.hover-right .right {
+    width: var(--hover-width);
+}
+
+/* when hover-right is active, style left */
+.hover-right .left {
+    width: var(--other-width);
+}
+
+/* if screen width is < 800px */
+@media(max-width: 800px) {
+h1 {
+    font-size: 2rem;
+    /* move down a bit to minimize vertical space between button */
+    top: 30%;
+}
+.btn {
+    width: 12rem;
+    padding: 1.2rem;
+}
 }
