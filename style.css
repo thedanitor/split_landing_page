@@ -1,22 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+/* :root selector same as html, but specificity is higher */
+:root {
+  /* custom color classes */
+  --left-bg-color: rgba(87, 84, 236, 0.7);
+  --right-bg-color: rgba(43, 43, 43, 0.8);
+  --left-btn-hover-color: rgba(87, 84, 236, 1);
+  --right-btn-hover-color: rgba(28, 122, 28, 1);
+}
 
 * {
-    /* width not affected by padding or border */
-    box-sizing: border-box;
+  /* width not affected by padding or border */
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
-    display: flex;
-    flex-direction: column;
-    /* Centered horizontally */
-    align-items: center; 
-    /* Centered vertically on 100% viewport */
-    justify-content: center;
-    /* 100% viewport height  */
-    height: 100vh;
-    /* don't want scrollbars  */
-    overflow: hidden;
-    /* no margins  */
-    margin: 0;
+  font-family: "Roboto", sans-serif;
+  /* 100% viewport height  */
+  height: 100vh;
+  /* don't want scrollbars  */
+  overflow: hidden;
+  /* no margins  */
+  margin: 0;
+}
+
+h1 {
+  /* increase h1 font size */
+  font-size: 4rem;
+  color: #fff;
+  /* position in reference to parent */
+  position: absolute;
+  /* starts in center of parent */
+  left: 50%;
+  /* 20% down from top */
+  top: 20%;
+  /* want center of text to be in center of parent by moving it to the left 50% of its own width*/
+  transform: translateX(-50%);
+  /* text will stay in one line */
+  white-space: nowrap;
+}
+
+.btn {
+  /* position in reference to parent */
+  position: absolute;
+  display: flex;
+  /* center vertically */
+  align-items: center;
+  /* center horizontally */
+  justify-content: center;
+  /* starts in center of parent */
+  left: 50%;
+  /* 40% down from top */
+  top: 40%;
+  /* want center of text to be in center of parent by moving it to the left 50% of its own width*/
+  transform: translateX(-50%);
+    /* remove link underline */
+  text-decoration: none;
+  color: #fff;
+  /* white solid border with width of 0.2rem */
+  border: #fff solid 0.2rem;
+    /* 1 rem is font-size of html element (default is usually 16px) */
+  font-size: 1rem;
+  font-weight: bold;
+  /* all caps  */
+  text-transform: uppercase;
+    /* increase "border box" width */
+  width: 15rem;
+    /* pad between text and border */
+  padding: 1.5rem;
+}
+
+/* when btn in split left is hovered */
+.split.left .btn:hover {
+    background-color: var(--left-btn-hover-color);
+    border-color: var(--left-btn-hover-color);
+}
+
+/* when btn in split right is hovered */
+.split.right .btn:hover {
+    background-color: var(--right-btn-hover-color);
+    border-color: var(--right-btn-hover-color);
+}
+
+.container {
+  /* so we can position children absolute */
+  position: relative;
+  /* full width of parent */
+  width: 100%;
+  /* full height of container */
+  height: 100%;
+  background: #333;
+}
+
+.split {
+  /* positioned in reference to parent (if parent has position) */
+  position: absolute;
+  /* half width of parent (.container) */
+  width: 50%;
+  /* full height of parent */
+  height: 100%;
+  /* scrollbars hidden */
+  overflow: hidden;
+}
+
+.split.left {
+  /* flush with left edge */
+  left: 0;
+  background: url("./ps5.jpg");
+  /* image only shown once */
+  background-repeat: no-repeat;
+  /* content completely coverd by background image */
+  background-size: cover;
+}
+
+/* div with split, left classes overlay, immediately before (in this case overlay) */
+.split.left::before {
+  /* when using ::before need content attribute */
+  content: "";
+  /* positioned in reference to parent (if parent has position) */
+  position: absolute;
+  /* full width of parent */
+  width: 100%;
+  /* full height of container */
+  height: 100%;
+  /* set background to color variable */
+  background-color: var(--left-bg-color);
+}
+
+.split.right {
+  /* flush with right edge */
+  right: 0;
+  background: url("./xboxX.jpg");
+  /* image only shown once */
+  background-repeat: no-repeat;
+  /* content completely coverd by background image */
+  background-size: cover;
+}
+
+/* div with split, right classes overlay, immediately before (in this case overlay) */
+.split.right::before {
+  /* when using ::before need content attribute */
+  content: "";
+  /* positioned in reference to parent (if parent has position) */
+  position: absolute;
+  /* full width of parent */
+  width: 100%;
+  /* full height of container */
+  height: 100%;
+  /* set background to color variable */
+  background-color: var(--right-bg-color);
 }
